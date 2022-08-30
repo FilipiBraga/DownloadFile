@@ -2,7 +2,7 @@
 {
     public interface IFileService
     {
-        Stream GetImage();
-        byte[] GetImage(bool asByte);
+        Stream GetImageAsStream();
+        byte[] GetImageAsByteArray();
     }
 }

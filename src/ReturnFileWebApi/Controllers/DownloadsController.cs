@@ -9,31 +9,26 @@ namespace ReturnFileWebApi.Controllers
     public class DownloadsController : ControllerBase
     {
         private readonly IFileService _fileService;
+        private const string _mimeType = "image/png";
+        private const string _fileName = "CM-Logo.png";
 
         public DownloadsController(IFileService fileService)
         {
             _fileService = fileService;
         }
 
-
-        [HttpGet("image-stream")]
-        public IActionResult ReturnStream()
+        [HttpGet("images-byte")]
+        public IActionResult ReturnByteArray()
         {
-            var mimeType = "image/jpeg";
-
-            var image = _fileService.GetImage();
-            return File(image, mimeType, "teste.jpg");
+            var image = _fileService.GetImageAsByteArray();
+            return File(image, _mimeType, _fileName);
         }
 
-        [HttpGet("images-byte")]
-        public IActionResult ReturnByte()
+        [HttpGet("images-stream")]
+        public IActionResult ReturnStream()
         {
-            var mimeType = "application/octet-stream";
-
-            var image = _fileService.GetImage(true);
-            var retorno = File(image, mimeType, "teste.jpg");
-
-            return retorno;
+            var image = _fileService.GetImageAsStream();
+            return File(image, _mimeType, _fileName);
         }
     }
 }
