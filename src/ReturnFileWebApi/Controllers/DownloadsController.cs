@@ -21,6 +21,7 @@ namespace ReturnFileWebApi.Controllers
         public IActionResult ReturnByteArray()
         {
             var image = _fileService.GetImageAsByteArray();
+
             return File(image, _mimeType, _fileName);
         }
 
@@ -28,6 +29,7 @@ namespace ReturnFileWebApi.Controllers
         public IActionResult ReturnStream()
         {
             var image = _fileService.GetImageAsStream();
+
             return File(image, _mimeType, _fileName);
         }
     }
